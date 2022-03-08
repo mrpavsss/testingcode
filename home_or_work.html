@@ -1,0 +1,501 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+    <!--<![endif]-->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        
+        <title>Simplifying Childcare</title>
+        
+
+        
+<meta name="keywords" content="tadpoles director login, daily reports, observations, attendance reports">
+<meta name="description"
+      content="Run reports for attendance.  See child observations for assessments.  Print out childcare daily sheets.  Communicate with parents.">
+<meta name="abstract"
+      content="You can access iGo via a web browser or from an iPad, iPhone or iPod touch.  From our website you can manage your center and stay organized.">
+<meta name="revisit-after" content="1 day">
+<link rel="canonical" href="http://www.stemacademy.com/">
+
+        <meta property="og:title" content="Childcare by" />
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content="http://stemacademy.com" />
+        <meta property="og:image" content="" />
+        <meta property="og:site_name" content="iGo" />
+        <meta property="fb:admins" content="171299459627214" />
+
+
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'/>
+        <link type="text/css" rel="stylesheet" media="all" href="/assets/css/corporate_style.css"/>
+        <link type="text/css" rel="stylesheet" media="all" href="/assets/css/menubar.css"/>
+        <link type="text/css" rel="stylesheet" media="all" href="/assets/css/dashboard.css"/>
+        <link type="text/css" rel="stylesheet" media="all" href="/assets/css/bootstrap.min.css"/>
+
+        
+
+        
+
+        <meta name="msvalidate.01" content="D74CFA19FD81AFB9142F4C5461E25B1C" />
+        <meta name="google-site-verification" content="mG_-urXLpZQ6VnMjTeocdBhuTIIF_OOjV2BIqZOscuE" />
+        <meta name="google-site-verification" content="aJTVAus5d6cmX14DkFlZrt1flYKPtRvrHXe1QH4DVAw" />
+
+        
+    </head>
+
+    <body id="app" class="preload" style="background-color:#F2F2F2;">
+        
+        
+<div class="tp-navbar navbar navbar-fixed-top" style="margin-bottom:5px;">
+    <div class="tp-navbar-inner navbar-inner">
+        <div class="container" style="width:auto;">
+            <ul class="tp-nav nav pull-right">
+                <li>
+                    <a href="/#families" class="menubar-option mobile-hide"  title="families" >families</a>
+                </li>
+                <li>
+                    <a href="/#teachers" class="menubar-option mobile-hide" title="teachers" >teachers</a>
+                </li>
+                <li>
+                    <a href="/#directors" class="menubar-option mobile-hide" title="directors" >directors</a>
+                </li>
+                <li>
+                    <a href="/#get-started" class="menubar-option mobile-hide" title="get-started" >get started</a>
+                </li>
+                <li >
+                    <a href="/demo" class="menubar-option" title="demo" data-bind="anchorScroll: true">demo</a>
+                </li>
+                <li style="margin-left:10px;">
+                    <button class="btn btn-small btn-warning" id="login-button" href="/home_or_work" onclick="return trackAndRedirectLoginLink();" title="Log In Link">
+                        log in
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+ 
+        
+        <div class="container wrapper" style="width:100%">
+            
+<div class="section section-first"></div>
+<div style="display:none;" data-bind="visible: loaded()">
+    <!-- ko if: accountState() == 'login' -->
+    <div class="section">
+        <div class="content">
+            <div class="tp-block-full tp-centered-contents">
+                <div style="margin:25px 0px 25px 0px">
+                    <p class="tp-page-heading-text">
+                        come on in
+                    </p>
+                    <p class="tp-page-subheading-text" id="subheading"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content clearme">
+            <div class="tp-shadow-half pull-left" data-bind="style: { opacity : appChoice() == 'provider' ? .3 : 1 }">
+                <div class="tp-block-half tp-centered-contents tp-pointable" data-bind="click: chooseParent">
+                    <h1 class="tp-heading-text" style="color:#BBB"><span style="color:#0080AC;">families</span><span
+                            data-bind="visible: appChoice() != 'parent'">&nbsp;click here</span></h1>
+                </div>
+            </div>
+            <div id="provider-button" class="tp-shadow-half pull-left" style="margin-left:25px;"
+                 data-bind="style: { opacity : appChoice() == 'parent' ? .3 : 1 }">
+                <div class="tp-block-half tp-centered-contents tp-pointable" data-bind="click: chooseProvider">
+                    <h1 class="tp-heading-text" style="color:#BBB"><span style="color:#B34B4B;">educators</span><span
+                            data-bind="visible: appChoice() != 'provider'">&nbsp;click here</span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <div class="section" data-bind="visible: appChoice() != 'unknown'">
+        <div class="content">
+            <div class="tp-shadow-full">
+                <div class="tp-block-full tp-centered-contents">
+                    <div data-bind="visible: appChoice() != 'unknown'">
+
+                        <h1 class="tp-heading-text" style="margin-bottom:30px;"
+                            data-bind="visible: panelHeading(), text: panelHeading()"></h1>
+
+                        <div data-bind="visible: accountState() == 'login' || accountState() == 'signup'">
+
+                            <div class="pull-left tp-centered-contents" style="width:380px;">
+                                <div class='content' style="width: 100%; text-align: center; position: relative">
+                                    <div class="noDown" style="position: absolute; right: 55px; margin-top: 6px">
+                                        <a href="#" data-bind="visible: appChoice() == 'provider', popover: getPopover()"><i
+                                                class="fa fa-question-circle fa-2x"></i></a>
+                                    </div>
+                                    <h1 class="tp-heading-text" style="font-size:18pt;margin-bottom:10px">choose an
+                                        account</h1>
+                                </div>
+                                <div class="well">
+                                    <div style="margin-bottom:10px;"
+                                         data-bind="style: { opacity : (!loginChoice() || loginChoice() === 'tadpoles') ? 1 : .3 }">
+                                        <img class="other-login-button tp-centered"
+                                             src="/images/2/corporate/btn-tadpoles.png"
+                                             data-bind="click:chooseTadpoles"/>
+                                    </div>
+                                    <div style="margin-bottom:10px;"
+                                         data-bind="style: { opacity : (!loginChoice() || loginChoice() === 'google') ? 1 : .3 }">
+                                        <img class="other-login-button tp-centered"
+                                             src="/images/2/corporate/btn-google.png" data-bind="click:loginGoogle" alt="Sign in with Google"/>
+                                    </div>
+                                    <div data-bind="visible: appChoice() == 'provider' && accountState() != 'signup', style: { opacity : (!loginChoice() || loginChoice() === 'gold') ? 1 : .3 }">
+                                        <img class="other-login-button tp-centered"
+                                             src="/images/1/corporate/btn-tsg.png" data-bind="click:chooseGold"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-left tp-form-label"
+                             style="display:none;font-size:32pt;width:138px;margin-top:138px;"
+                             data-bind="visible: (accountState() == 'login' || accountState() == 'signup') && (loginChoice() === 'tadpoles' || loginChoice() === 'gold')">
+                            <i class="fa fa-arrow-right"></i>
+                        </div>
+                        <div class="pull-right tp-centered-contents" style="width:380px;display:none;margin: 0px auto;"
+                             data-bind="css: { 'pull-right' : accountState() === 'login' || accountState() === 'signup' }, visible: accountState() != 'forgot' && (loginChoice() === 'tadpoles' || loginChoice() === 'gold')">
+                            <h1 class="tp-heading-text" style="font-size:18pt;margin-bottom:10px;"
+                                data-bind="visible: accountState() == 'login'">login</h1>
+                            <h1 class="tp-heading-text" style="font-size:18pt;margin-bottom:10px;"
+                                data-bind="visible: accountState() == 'signup'">use a tadpoles account</h1>
+                            <div class="well">
+                                <div style="width:340px;text-align:right"
+                                     data-bind="visible: accountState() == 'login'">
+                                    <div class="alert alert-block alert-danger tp-centered-contents"
+                                         data-bind="visible: error()">
+                                        <span data-bind="text: error()"></span>
+                                    </div>
+
+                                    <form class="form-horizontal tp-left-contents" style="margin-bottom:0;"
+                                          data-bind="submit: doLogin">
+                                        <div class="control-group" style="margin-bottom:12px;">
+                                            <label for="login_email" class="tp-form-label control-label" style="width:100px;"
+                                                   data-bind="text: loginChoice() === 'gold' ? 'username' : 'email'">
+                                                email
+                                            </label>
+                                            <div class="controls" style="margin-left:120px;">
+                                                <input id="login_email" type="text" placeholder="your email address"
+                                                       data-bind="attr: { 'placeholder' : 'your ' + (loginChoice() === 'gold' ? 'gold username' : 'email address') }, value: login.email, valueUpdate: 'afterkeydown'"/>
+                                            </div>
+                                        </div>
+                                        <div class="control-group" style="margin-bottom:8px;"
+                                             data-bind="visible: !login.isGmail()">
+                                            <label for="login_password" class="tp-form-label control-label" style="width:100px;">
+                                                password
+                                            </label>
+                                            <div class="controls" style="margin-left:120px;">
+                                                <input id="login_password" type="password"
+                                                       data-bind="value: login.password, valueUpdate: 'afterkeydown'"/>
+                                            </div>
+                                        </div>
+                                        <div class="control-group" style="margin-bottom:0;"
+                                             data-bind="visible: !login.isGmail()">
+                                            <div class="controls">
+                                                <button class="btn btn-primary pull-right" style="margin-top: 4px;"
+                                                        type="submit"
+                                                        data-bind="enable: !login.isGmail() &&  !processing()">
+                                                    submit
+                                                </button>
+                                            </div>
+                                            <div class="controls" style="margin-left:120px;">
+                                                <!-- ko if: loginChoice() != 'gold' -->
+                                                <a href="#" data-bind="click: chooseForgot">Forgot your password?</a>
+                                                <!-- /ko -->
+                                                <!-- ko if: loginChoice() == 'gold' -->
+                                                <a href="https://gold.teachingstrategies.com/emailPassword.cfm"
+                                                   target="_blank">Forgot your password?</a>
+                                                <br/>
+                                                <a href="https://gold.teachingstrategies.com/lostUsername.cfm"
+                                                   target="_blank">Forgot your username?</a>
+                                                <!-- /ko -->
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <p style="margin:20px 0px 0px 0px;"
+                                       data-bind="visible: !login.isGmail() && loginChoice() !== 'gold'">
+                                        need an account? <a href="#" data-bind="click: chooseSignup">Sign Up</a>
+                                    </p>
+                                    <div class="alert alert-block alert-info tp-centered-contents"
+                                         data-bind="visible: login.isGmail()">
+                                        <span>Please use the google button to login using your google account</span>
+                                    </div>
+                                </div>
+                                <div style="width:340px;text-align:left"
+                                     data-bind="visible: accountState() == 'signup'">
+                                    <div data-bind="visible: !success()">
+                                        <div class="alert alert-block alert-danger tp-centered-contents"
+                                             data-bind="visible: error()">
+                                            <h4 class="alert-heading">Uh oh!</h4>
+                                            <span data-bind="text: error()"></span>
+                                        </div>
+                                        <h4>Enter your email address</h4>
+                                        <span style="color:gray">and we will send you a link to finish your registration</span>
+                                        <form class="form-horizontal tp-left-contents" style="margin:12px 0px;"
+                                              data-bind="submit: doEmailRequest">
+                                            <input class="pull-left" type="text" placeholder="your email address"
+                                                   style="width:260px;"
+                                                   data-bind="value:emailRequest.email, valueUpdate: 'afterkeydown'"/>
+                                            <button class="pull-right btn btn-primary" type="submit"
+                                                    style="margin:0px 0px 12px 0px;"
+                                                    data-bind="visible: !emailRequest.isGmail(), enable: !processing()">
+                                                submit
+                                            </button>
+                                        </form>
+                                        <div style="clear:both"
+                                             class="alert alert-block alert-info tp-centered-contents"
+                                             data-bind="visible: emailRequest.isGmail()">
+                                            <span>Please return to the login page and use the google button to login using your google account</span>
+                                        </div>
+                                        <p style="clear:both;margin:15px 0px 0px 0px;text-align:right">
+                                            already have an account? <a href="#"
+                                                                        data-bind="click: chooseLogin">Login</a>
+                                        </p>
+                                    </div>
+                                    <div class="tp-centered-contents" data-bind="visible: success()">
+                                        <h1 class="tp-heading-text" style="font-size:20pt;">check
+                                            your email!</h1>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                    <div class="well tp-centered" style="width:340px;" data-bind="visible: accountState() == 'reset_requested'">
+                        <div style="width:340px;text-align:left">
+                            <div class="tp-centered-contents">
+                                <h1 class="tp-heading-text" style="font-size:20pt;">check your
+                                    email again!</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="well tp-centered" style="width:340px;" data-bind="visible: accountState() == 'forgot'">
+                        <div style="width:340px;text-align:left">
+                            <div data-bind="visible: !success()">
+                                <div class="alert alert-block alert-danger" data-bind="visible: error()">
+                                    <h4 class="alert-heading">Uh oh!</h4>
+                                    <span data-bind="text: error()"></span>
+                                </div>
+                                <h4>Enter your email address</h4>
+                                <!-- ko if: accountState() == 'signup' -->
+                                <span style="color:gray">and we will send you a link to finish your registration</span>
+                                <!-- /ko -->
+                                <!-- ko if: accountState() == 'forgot' -->
+                                <span style="color:gray">and we will send you a link to reset your password</span>
+                                <!-- /ko -->
+                                <form class="tp-left-contents" style="margin:12px 0;"
+                                      data-bind="submit: doEmailRequest">
+                                    <input class="pull-left" type="text" placeholder="your email address"
+                                           style="width:260px;"
+                                           data-bind="value:emailRequest.email, valueUpdate: 'afterkeydown'"/>
+                                    <button class="pull-right btn btn-primary" type="submit" style="margin:0 0 12px 0;"
+                                            data-bind="visible: !emailRequest.isGmail(), enable:!processing()">
+                                        submit
+                                    </button>
+                                </form>
+                                <div style="clear:both" class="alert alert-block alert-info tp-centered-contents"
+                                     data-bind="visible: emailRequest.isGmail()">
+                                    <span>Please visit your google account page to change your password</span>
+                                </div>
+                                <p style="clear:both;margin:15px 0 0 0;text-align:right">
+                                    Nevermind, take me back to <a href="#" data-bind="click: chooseLogin">Login</a>
+                                </p>
+                            </div>
+                            <div class="tp-centered-contents" data-bind="visible: success()">
+                                <h1 class="tp-heading-text" style="font-size:20pt;">check your
+                                    email!</h1>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="well tp-centered" style="width:340px;" data-bind="visible: accountState() == 'reset'">
+                        <div style="width:340px;text-align:left">
+                            <div class="alert alert-block alert-danger" data-bind="visible: error()">
+                                <h4 class="alert-heading">Uh oh!</h4>
+                                <span data-bind="text: error()"></span>
+                            </div>
+                            <h4>Enter your new password</h4>
+                            <span style="color:gray">(minimum length 10 characters)</span>
+                            <form class="pull-left tp-left-contents" style="margin:12px 0px 0px 0px;"
+                                  data-bind="submit: doPassword">
+                                <input type="password" style="width:260px;"
+                                       data-bind="value:resetPassword.password, valueUpdate: 'afterkeydown'">
+                                </input>
+                            </form>
+                            <button class="pull-right btn btn-primary" type="submit" style="margin:12px 0px 0px 0px;"
+                                    data-bind="enable: !processing() && resetPassword.valid(), click: doPassword">
+                                submit
+                            </button>
+                            <div style="clear:both;"></div>
+                        </div>
+                    </div>
+                    <div class="well tp-centered" style="width:340px;" data-bind="visible: accountState() == 'create'">
+                        <div style="width:340px;text-align:left">
+                            <div class="alert alert-block alert-danger" data-bind="visible: error()">
+                                <span data-bind="text: error()"></span>
+                            </div>
+                            <form class="pull-left tp-left-contents" style="margin:0px 0px 0px 0px;"
+                                  data-bind="submit: doRegister">
+
+                                <label>
+                                    <h2>provider name</h2><span style="color:gray">(minimum length 5 characters)</span>
+                                </label>
+                                <div class="control-group" data-bind="css: { 'error': !register.accountNameValid() }">
+                                    <input style="width:330px; margin-bottom:30px;" type="text"
+                                           data-bind="value:register.accountName, valueUpdate: 'afterkeydown'"/>
+                                </div>
+                                <label>
+                                    <h2 style="margin-bottom:10px;">admin info</h2>
+                                    <h4>email</h4>
+                                </label>
+                                <input style="width:330px" type="text" data-bind="enable:false, value: user.email"/>
+
+                                <label>
+                                    <h4>password</h4><span style="color:gray">(minimum length 10 characters)</span>
+                                </label>
+                                <div class="control-group" data-bind="css: { 'error': !register.passwordValid() }">
+                                    <input style="width:330px" type="password"
+                                           data-bind="value:register.password, valueUpdate: 'afterkeydown'"/>
+                                </div>
+
+                                <label>
+                                    <h4>first and last name</h4>
+                                </label>
+                                <div class="control-group" data-bind="css: { 'error': !register.nameValid() }">
+                                    <input style="width:330px" type="text"
+                                           data-bind="value:register.fullName, valueUpdate: 'afterkeydown'"/>
+                                </div>
+
+                                <label>
+                                    <h4>phone number</h4>
+                                </label>
+                                <div class="control-group" data-bind="css: { 'error': !register.phoneValid() }">
+                                    <input style="width:330px" type="text"
+                                           data-bind="value:register.phone, valueUpdate: 'afterkeydown'"/>
+                                </div>
+                                <label>
+                                    <h4>current child care management system</h4>
+                                </label>
+                                <div class="control-group">
+                                    <select style="width:330px"
+                                            data-bind="options: register.cmsOptions, optionsText: 'cmsName', optionsValue: 'cmsValue', value: register.selectedCms, optionsCaption: 'Choose...'"></select>
+                                </div>
+                                <!-- ko if: register.selectedCms() === 'other' -->
+                                <label>
+                                    <h4>cms system name</h4>
+                                </label>
+                                <div class="control-group">
+                                    <input style="width:330px" type="text"
+                                           data-bind="value:register.otherCms, valueUpdate: 'afterkeydown'"/>
+                                </div>
+                                <!-- /ko -->
+                            </form>
+                            <button class="pull-right btn" style="margin:12px 0 0 10px;" data-bind="click: logout">
+                                cancel
+                            </button>
+                            <button class="pull-right btn btn-primary" type="submit" style="margin:12px 0 0 0;"
+                                    data-bind="enable: !processing() && register.valid(),click:doRegister">
+                                create
+                            </button>
+                            <div style="clear:both;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <div class="push"></div>
+        </div>
+        <!--[if lt IE 8]><script type="text/javascript" src="/javascript/dGFkMjItMDMtMDcuNDQyMDI5NDk1ODcwNjAxMzM2/polyfill/json2.js"></script><![endif]-->
+        <div class="sticky-footer centered" style="position:relative;margin-top:20px;margin-bottom:20px;">
+    <p style="font-size:16px;">
+        Please email us any time at <a href="mailto:hello@tadpoles.com">hello@tadpoles.com</a>
+    </p>
+    <div class="tp-site-map">
+        <a href="/privacy" title="Privacy">privacy</a><a href="/docs/1/tadpoles_terms.pdf" title="Terms">terms</a>
+    </div>
+
+    ©2020 Tadpoles LLC
+</div>
+
+        
+        <script type="text/javascript">
+            CB = 'dGFkMjItMDMtMDcuNDQyMDI5NDk1ODcwNjAxMzM2/';
+            tadpoles = {};
+        </script>
+        <script type="text/javascript">
+    <!--//--><![CDATA[//><!--
+    var _gaq = _gaq || [];
+    _gaq.push(["_setAccount", "UA-19847545-1"]);
+    _gaq.push(["_trackPageview"]);
+    (function() {
+        var ga = document.createElement("script");
+        ga.type = "text/javascript";
+        ga.async = true;
+        ga.src = ("https:" === document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+
+    var executeAndRedirect = function(gaq_args, url) {
+        _gaq.push(gaq_args);
+        if(Object.prototype.toString.call(_gaq) === '[object Array]') {
+            document.location = url;
+        }
+        else {
+            _gaq.push(function() {
+                document.location = url;
+            });
+        }
+
+        return false;
+    };
+
+    var trackParentDownload = function() {
+        _gaq.push(['_trackEvent', 'Download', 'ParentApp']);
+    };
+
+    var trackAndroidParentDownload = function() {
+        _gaq.push(['_trackEvent', 'Download', 'ParentApp-Android']);
+    };
+
+    var trackProviderDownload = function() {
+        _gaq.push(['_trackEvent', 'Download', 'ProviderApp']);
+    };
+
+    var trackLoginLink = function() {
+        _gaq.push(['_trackEvent', 'Login', 'ClickLoginLink']);
+    };
+
+    var trackAndRedirectLoginLink = function() {
+        // Very important that you return to prevent the link from executing before we can track it!
+        return executeAndRedirect(trackLoginLink, '/home_or_work');
+    };
+
+    var trackAndRedirectParentLoginLink = function() {
+        // Very important that you return to prevent the link from executing before we can track it!
+        return executeAndRedirect(trackLoginLink, '/home_or_work?app=parent');
+    };
+    //--><!]]>
+</script>
+        
+<script type='text/javascript'>
+    tadpoles.params = {"action": "", "host": "www.tadpoles.com", "reason": "", "app": ""};
+</script>
+<script type="text/javascript" src="/javascript/dGFkMjItMDMtMDcuNDQyMDI5NDk1ODcwNjAxMzM2/loadApp.js" data-id="tp-app-loader" data-cb="dGFkMjItMDMtMDcuNDQyMDI5NDk1ODcwNjAxMzM2/" data-name="login"></script>
+
+    </body>
+</html>
