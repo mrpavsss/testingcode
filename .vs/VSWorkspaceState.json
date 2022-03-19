@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\js",
+    "\\vendor",
+    "\\vendor\\select2"
   ],
+  "SelectedNode": "\\js\\global.js",
   "PreviewInSolutionExplorer": false
 }
